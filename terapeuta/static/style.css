@@ -1,3 +1,4 @@
+/* ========== ESTILO GLOBAL ========== */
 body, html {
   margin: 0;
   padding: 0;
@@ -7,38 +8,18 @@ body, html {
 
   background-image: url("/static/img/fondo-abajo.png");
   background-position: center center;
-  background-size: cover;        /* 👈 cambia esto */
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-@media (max-width: 600px) {
-  .login-card {
-    width: 90%;
-    padding: 1.5rem;
-  }
-
-  .navbar-title {
-    font-size: 1rem;
-  }
+  overflow-y: hidden;
 }
 
-/* Solo estructura y centrado en .background */
-.background {
-  min-height: 100vh;
-  justify-content: center;
-  padding: 0;
-  margin-top: -40px;
-  display: flex;
-  align-items: center;
-}
-
-
+/* ========== NAVBAR ========== */
 .navbar {
-  background-color: #f0f0f0; /* rojo pasión */
-  color: white;
-  padding: 0.7rem 1rem;
+  background-color: #f0f0f0;
+  padding: 0.4rem 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
@@ -46,15 +27,17 @@ body, html {
 }
 
 .navbar-content {
-  width: 100%;
-  max-width: 1100px;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 1rem;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding-left: 0.8rem;
+  overflow: hidden;
 }
 
 .navbar-logo {
-  width: 120px;
+  width: 100px;
   height: auto;
 }
 
@@ -63,10 +46,24 @@ body, html {
   font-weight: bold;
   color: rgb(0, 0, 0);
   letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========== CONTENIDO PRINCIPAL ========== */
+.background {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 15vh;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .login-card {
-  background-color: rgba(224, 224, 224, 0.95); /* rojo pasión con opacidad */
+  background-color: rgba(235, 235, 235, 0.95);
   padding: 2.5rem 2rem;
   gap: 1rem;
   border-radius: 15px;
@@ -84,14 +81,16 @@ body, html {
   flex-direction: column;
   align-items: center;
 }
+
+.login-card:hover {
+  transform: scale(1.01);
+}
+
 @keyframes fadeIn {
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-.login-card:hover {
-  transform: scale(1.01);
 }
 
 .logo-img {
@@ -99,18 +98,17 @@ body, html {
   display: block;
   margin: 0 auto 1rem;
 }
-form input:focus {
-  outline: none;
-  border: 1px solid #c1121f;
-  box-shadow: 0 0 0 2px #f6cdd2;
-}
-
-
 
 h2 {
   color: rgb(0, 0, 0);
   margin-bottom: 1.5rem;
   font-size: 1.6rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form input {
@@ -122,6 +120,12 @@ form input {
   font-size: 1.1rem;
   transition: box-shadow 0.2s ease;
   text-align: center;
+}
+
+form input:focus {
+  outline: none;
+  border: 1px solid #c1121f;
+  box-shadow: 0 0 0 2px #f6cdd2;
 }
 
 form button {
@@ -155,25 +159,31 @@ form .forgot:hover {
   text-decoration: underline;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* ========== PIE DE PÁGINA ========== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #f3ede7;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #333;
+  box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
 }
 
-.error-msg {
-  background-color: #fff0f0;
-  color: #a80000;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-}
+/* ========== ERRORES ========== */
 .error-msg {
   animation: shake 0.3s ease;
   border: 1px solid #dc3545;
   background-color: #ffe5e7;
   color: #991f26;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
 }
+
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -182,30 +192,20 @@ form {
   100% { transform: translateX(0); }
 }
 
-/* ✅ RESPONSIVE BREAKPOINT */
-@media (max-width: 480px) {
+/* ========== RESPONSIVE GENERAL ========== */
+@media (max-width: 600px) {
   .login-card {
+    width: 90%;
     padding: 1.5rem;
-    max-width: 90%;
   }
-
   h2 {
     font-size: 1.4rem;
   }
-
   form input,
   form button {
     font-size: 0.95rem;
   }
-
-  .navbar-content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .navbar-title {
-    font-size: 0.95rem;
-    text-align: center;
+    font-size: 0.9rem;
   }
 }
-
