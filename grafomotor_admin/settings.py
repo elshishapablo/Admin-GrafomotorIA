@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pacientes',
+    'terapeuta',
 ]
 
 MIDDLEWARE = [
@@ -38,7 +38,7 @@ ROOT_URLCONF = 'grafomotor_admin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'pacientes/templates'],
+        'DIRS': [BASE_DIR / 'terapeuta/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -53,19 +53,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'grafomotor_admin.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT', '3306'),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': os.getenv('DB_NAME'),
+#        'USER': os.getenv('DB_USER'),
+#        'PASSWORD': os.getenv('DB_PASSWORD'),
+#        'HOST': os.getenv('DB_HOST'),
+#        'PORT': os.getenv('DB_PORT', '3306'),
+#        'OPTIONS': {
+#            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#        }
+#    }
+#}
 
 AUTH_PASSWORD_VALIDATORS = []
 

@@ -3,7 +3,7 @@ from .models import Usuario
 
 def lista_usuarios(request):
     usuarios = Usuario.objects.all()
-    return render(request, 'pacientes/usuarios.html', {'usuarios': usuarios})
+    return render(request, 'terapeuta/usuarios.html', {'usuarios': usuarios})
 
 
 def login_view(request):
@@ -17,5 +17,5 @@ def login_view(request):
             request.session['usuario_id'] = usuario.id_usuario
             return redirect('usuarios')  # o a la vista que quieras después del login
         except Usuario.DoesNotExist:
-            return render(request, 'pacientes/login.html', {'error': 'Credenciales incorrectas'})
-    return render(request, 'pacientes/login.html')
+            return render(request, 'terapeuta/login.html', {'error': 'Credenciales incorrectas'})
+    return render(request, 'terapeuta/login.html')
