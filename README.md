@@ -35,7 +35,3 @@ python -m venv env
 env\Scripts\activate     # En Windows
 pip install -r requirements.txt
 python manage.py runserver
-
-
-Proyecto creado por @elshishapablo
-Contacto: pab.aravena.16@gmail.com
