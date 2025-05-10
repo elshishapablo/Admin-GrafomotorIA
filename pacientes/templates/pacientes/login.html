@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar sesión - GrafomotorIA</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <div class="background">
+    <div class="login-card">
+      <div class="logo">
+        <img src="{% static 'img/logo-teleton.png' %}" alt="Teletón" class="logo-img">
+        <h2>Iniciar sesión</h2>
+      </div>
+
+      <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="email" name="correo" placeholder="ejemplo@teleton.cl" required>
+        <input type="password" name="contrasena" placeholder="Contraseña" required>
+
+        {% if error %}
+          <div class="error-msg">{{ error }}</div>
+        {% endif %}
+
+        <button type="submit">Acceder</button>
+        <a href="#" class="forgot">Olvidé mi contraseña</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+
