@@ -2,65 +2,163 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
+  color: #000;
+
+  background-image: url("/static/img/fondo-abajo.png");
+  background-position: center center;
+  background-size: cover;        /* 👈 cambia esto */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+@media (max-width: 600px) {
+  .login-card {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .navbar-title {
+    font-size: 1rem;
+  }
 }
 
+/* Solo estructura y centrado en .background */
 .background {
-  background-image: url('/static/img/fondo-teleton.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
+  min-height: 100vh;
   justify-content: center;
+  padding: 0;
+  margin-top: -40px;
+  display: flex;
   align-items: center;
 }
 
+
+.navbar {
+  background-color: #f0f0f0; /* rojo pasión */
+  color: white;
+  padding: 0.7rem 1rem;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-content {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-logo {
+  width: 120px;
+  height: auto;
+}
+
+.navbar-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.5px;
+}
+
 .login-card {
-  background-color: rgba(220, 53, 69, 0.95); /* rojo con opacidad */
-  padding: 2rem;
+  background-color: rgba(224, 224, 224, 0.95); /* rojo pasión con opacidad */
+  padding: 2.5rem 2rem;
+  gap: 1rem;
   border-radius: 15px;
-  width: 350px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   text-align: center;
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease forwards;
+  border: 1px solid #f3ede7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.login-card:hover {
+  transform: scale(1.01);
 }
 
 .logo-img {
-  width: 120px;
+  width: 50px;
   display: block;
   margin: 0 auto 1rem;
 }
+form input:focus {
+  outline: none;
+  border: 1px solid #c1121f;
+  box-shadow: 0 0 0 2px #f6cdd2;
+}
+
+
 
 h2 {
-  color: white;
+  color: rgb(0, 0, 0);
   margin-bottom: 1.5rem;
+  font-size: 1.6rem;
 }
 
 form input {
-  width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 1rem;
+  width: 90%;
+  padding: 0.9rem;
+  margin-bottom: 1.2rem;
   border: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  transition: box-shadow 0.2s ease;
+  text-align: center;
 }
 
 form button {
-  width: 100%;
-  padding: 0.7rem;
+  font-size: 1rem;
+  padding: 0.9rem;
+  width: 50%;
   background-color: white;
-  color: #dc3545;
+  color: #c1121f;
   font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  transition: background 0.2s ease;
+}
+
+form button:hover {
+  background-color: #f6cdd2;
+  color: #a80000;
 }
 
 form .forgot {
   display: block;
   margin-top: 1rem;
-  color: white;
+  color: rgb(5, 98, 185);
   font-size: 0.9rem;
   text-decoration: none;
+}
+
+form .forgot:hover {
+  text-decoration: underline;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .error-msg {
@@ -70,3 +168,44 @@ form .forgot {
   margin-bottom: 1rem;
   border-radius: 5px;
 }
+.error-msg {
+  animation: shake 0.3s ease;
+  border: 1px solid #dc3545;
+  background-color: #ffe5e7;
+  color: #991f26;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* ✅ RESPONSIVE BREAKPOINT */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  form input,
+  form button {
+    font-size: 0.95rem;
+  }
+
+  .navbar-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-title {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
+

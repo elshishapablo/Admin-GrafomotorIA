@@ -3,20 +3,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar sesión - GrafomotorIA</title>
   <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
 <body>
+  <header class="navbar">
+    <div class="navbar-content">
+      <img src="{% static 'img/logo-teleton.png' %}" alt="Logo Teletón" class="navbar-logo">
+      <span class="navbar-title">GrafomotorIA</span>
+    </div>
+  </header>
+
   <div class="background">
     <div class="login-card">
       <div class="logo">
-        <img src="{% static 'img/logo-teleton.png' %}" alt="Teletón" class="logo-img">
+        <img src="{% static '/img/logo-teleton-.png' %}" alt="Teletón" class="logo-img">
         <h2>Iniciar sesión</h2>
       </div>
 
       <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        <input type="email" name="correo" placeholder="ejemplo@teleton.cl" required>
+        <input type="email" inputmode="email" name="correo" placeholder="ejemplo@teleton.cl" required>
         <input type="password" name="contrasena" placeholder="Contraseña" required>
 
         {% if error %}
