@@ -1,6 +1,12 @@
+# Entornos virtuales
 env/
+venv/
 __pycache__/
 *.pyc
+
+# Archivos de configuración local
 *.sqlite3
-*.log
-.env
+*.env
+
+# Archivos de sistema
+.DS_Store
