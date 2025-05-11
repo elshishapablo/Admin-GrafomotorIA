@@ -10,7 +10,7 @@ body, html {
 
 /* ========== CONTENEDOR DEL FONDO ========== */
 .background {
-  height: calc(100vh - 100px); 
+  height: calc(100vh - 120px); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,6 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  opacity: 0.7;
   z-index: 0;
 }
 
