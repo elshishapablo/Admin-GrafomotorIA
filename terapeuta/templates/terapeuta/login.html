@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar sesión - GrafomotorIA</title>
+  <title>GrafomotorIA | Login</title>
+  <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
   <link rel="stylesheet" href="{% static 'style.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
@@ -22,8 +23,7 @@
         <img src="{% static '/img/logo-teleton-.png' %}" alt="Teletón" class="logo-img">
         <h2>Iniciar sesión</h2>
       </div>
-
-      <form method="POST" action="{% url 'login' %}">
+      <form method="GET" action="{% url 'home' %}">
         {% csrf_token %}
         <input type="email" inputmode="email" name="correo" placeholder="ejemplo@teleton.cl" required>
         <input type="password" name="contrasena" placeholder="Contraseña" required>

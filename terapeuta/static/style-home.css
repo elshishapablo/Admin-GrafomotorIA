@@ -1,0 +1,168 @@
+/* ========== ESTILO GLOBAL ========== */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  color: #000;
+  overflow: hidden;
+}
+
+.background {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+  padding-top: 28vh; 
+}
+
+
+.background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/static/img/fondo-abajo.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+  background-color: #f0f0f0;
+  padding: 1.2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar-content {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.7rem;
+  padding-left: 0.8rem;
+  overflow: hidden;
+}
+
+.navbar-logo {
+  width: 100px;
+  height: auto;
+}
+
+.navbar-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.user-info {
+  font-size: 0.95rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.user-info img {
+  width: 24px;
+  height: 24px;
+}
+
+/* ========== DASHBOARD ========== */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  justify-content: center; /* Centra las columnas horizontalmente */
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  z-index: 1;
+  position: relative;
+}
+
+/* ========== CARD ========== */
+.card {
+  background-color: #faf6f2;
+  padding: 2rem; 
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 200px;   
+  height: 180px;   
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+  object-fit: contain;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background-color: #f6cdd2;
+}
+
+.card img {
+  width: 64px;    
+  height: 64px;
+  margin-bottom: 0.8rem;
+}
+
+.card span {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem;  /* AJUSTADO para que no sea tan alto */
+  background-color: #f3ede7;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #333;
+  box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .navbar-logo {
+    width: 40px;
+  }
+
+  .navbar-title {
+    font-size: 0.95rem;
+  }
+
+  .user-info {
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    width: 80%;
+  }
+}

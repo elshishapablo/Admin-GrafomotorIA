@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>GrafomotorIA | Inicio </title>
+  <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+  <link rel="stylesheet" href="{% static 'style-home.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-content">
+      <img src="{% static 'img/logo-teleton.png' %}" alt="Logo Teletón" class="navbar-logo">
+      <span class="navbar-title">GrafomotorIA</span>
+    </div>
+    <div class="user-info">
+      Hola, usuario
+      <img src="{% static 'img/user-icon.png' %}" alt="Usuario">
+    </div>
+  </header>
+
+  <!-- AQUI SE AGREGA EL CONTENEDOR BACKGROUND -->
+  <div class="background">
+    <main class="dashboard">
+      <div class="card">
+        <img src="{% static 'img/icon-pacientes.png' %}" alt="Pacientes">
+        <span>Gestión de pacientes</span>
+      </div>
+      <div class="card">
+        <img src="{% static 'img/icon-pacientes.png' %}" alt="Pacientes">
+        <span>Gestión de usuarios</span>
+      </div>
+      <div class="card">
+        <img src="{% static 'img/icon-gestion.png' %}"  alt="Calendario">
+        <span>Gestión de sesiones</span>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    © 2025 Teletón – Proyecto GrafomotorIA
+  </footer>
+</body>
+
+</html>

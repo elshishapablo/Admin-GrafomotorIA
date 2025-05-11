@@ -19,3 +19,8 @@ def login_view(request):
         except Usuario.DoesNotExist:
             return render(request, 'terapeuta/login.html', {'error': 'Credenciales incorrectas'})
     return render(request, 'terapeuta/login.html')
+
+
+def home_view(request):
+    return render(request, 'terapeuta/home.html')
+
