@@ -55,44 +55,7 @@
       <button id="tts" class="access-control">🔊<br><small>Audio<br>Lectura</small></button>
     </div>
   </div>
-  <script>
-    const barOpen     = document.getElementById('accessibility-open');
-    const panel       = document.getElementById('accessibility-panel');
-    const barClose    = document.getElementById('accessibility-close');
-    const root        = document.documentElement;
-
-    barOpen.addEventListener('click', () => {
-      panel.classList.add('open');
-      panel.setAttribute('aria-hidden','false');
-    });
-    barClose.addEventListener('click', () => {
-      panel.classList.remove('open');
-      panel.setAttribute('aria-hidden','true');
-    });
-
-    document.getElementById('zoom-in').onclick = () => {
-      root.style.fontSize = (parseFloat(getComputedStyle(root).fontSize) + 2) + 'px';
-    };
-    document.getElementById('zoom-out').onclick = () => {
-      root.style.fontSize = (parseFloat(getComputedStyle(root).fontSize) - 2) + 'px';
-    };
-    document.getElementById('contrast').onclick = () => {
-      document.body.classList.toggle('contrast');
-    };
-    document.getElementById('highlight').onclick = () => {
-      document.querySelectorAll('a, button, input, img').forEach(el => {
-        el.classList.toggle('highlightable');
-      });
-    };
-    document.getElementById('cursor').onclick = () => {
-      document.body.classList.toggle('large-cursor');
-    };
-    document.getElementById('tts').onclick = () => {
-      const text = document.body.innerText;
-      new SpeechSynthesisUtterance(text) && speechSynthesis.speak(new SpeechSynthesisUtterance(text));
-    };
-
-  </script>
+  
   <footer class="footer">
   © 2025 Teletón – Proyecto GrafomotorIA
   </footer>
