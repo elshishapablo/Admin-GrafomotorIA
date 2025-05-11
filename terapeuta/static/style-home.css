@@ -15,7 +15,7 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start; 
-  padding-top: 29vh; 
+  padding: 2rem 0;
 }
 
 
@@ -93,6 +93,123 @@ body, html {
   z-index: 1;
   position: relative;
 }
+/* ==== Data Panel: fondo claro y efecto 3D ==== */
+.data-panel {
+  width: 75%;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Controles: campo de búsqueda y filtros */
+.data-panel .data-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.data-panel .dp-search {
+  flex: 1 1 200px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #000;        /* borde negro */
+  background: #fff;               /* fondo blanco */
+  color: #000;
+}
+.data-panel .dp-filter {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #000;        /* borde negro */
+  background: #fff;               /* fondo blanco */
+  color: #000;
+}
+.data-panel .dp-add {
+  background: #E60012;
+  color: #fff;
+  border: 1px solid #000;        /* borde negro */
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.data-panel .dp-user img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* ==== Tabla con fondo blanco y bordes negros ==== */
+/* Fuerza una distribución fija de columnas */
+.data-panel .dp-table {
+  width: 100%;
+  table-layout: fixed;      /* cada columna reparte el ancho */
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+/* Cabecera: centrado total */
+.data-panel .dp-table thead th {
+  padding: 0.75rem 0.5rem;
+  background: #fff;
+  color: #000;
+  border-bottom: 2px solid #000;
+  text-align: center;       /* CENTRAR texto del encabezado */
+  vertical-align: middle;
+}
+
+/* Celdas: centrado total */
+.data-panel .dp-table tbody td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #000;
+  text-align: center;       /* CENTRAR texto de las celdas */
+  vertical-align: middle;
+  white-space: nowrap;      /* evita que el texto se rompa */
+}
+
+
+/* ==== Estado ==== */
+.data-panel .status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #000;
+}
+.data-panel .status.en-evaluacion   { background: #ffc107; }
+.data-panel .status.en-tratamiento   { background: #28a745; color: #fff; }
+.data-panel .status.alta-medica      { background: #6c757d; color: #fff; }
+.data-panel .status.en-seguimiento   { background: #17a2b8; color: #fff; }
+
+/* ==== Paginación: botones blancos con borde negro ==== */
+.data-panel .dp-pagination {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.data-panel .dp-pagination button {
+  background: #fff;               /* fondo blanco */
+  color: #000;
+  border: 1px solid #000;         /* borde negro */
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.data-panel .dp-pagination button.active {
+  background: #E60012;            /* rojo activo */
+  color: #fff;
+  border-color: #000;
+}
+.data-panel .dp-pagination span {
+  color: #000;
+  font-weight: bold;
+}
+
 
 /* ========== CARD ========== */
 .card {
@@ -127,19 +244,145 @@ body, html {
   font-size: 0.95rem;
   color: #333;
 }
+/* ====== Widget de accesibilidad integrado ====== */
+:root {
+  --color-teleton-red: #fc2638;
+  --footer-height: 36px;  
+}
+.access-header .access-icon {
+  width: 24px;       /* ajusta al tamaño que necesites */
+  height: auto;
+  margin-right: 0.5rem;
+}
+
+/* Contenedor principal */
+.accessibility-widget {
+  position: fixed;
+  bottom: var(--footer-height);
+  left: 0;
+  width: 100%;
+  background: var(--color-teleton-red);
+  color: #fff;
+  overflow: hidden;
+  height: 50px;                
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+  transition: height 0.3s ease;
+  z-index: 10000;
+}
+
+/* Cabecera con curva */
+.access-header {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.access-header::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 40px;
+  background: var(--color-teleton-red);
+  border-bottom-left-radius: 50% 100%;
+  border-bottom-right-radius: 50% 100%;
+}
+.access-header .icon {
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+.access-header .label {
+  font-weight: bold;
+}
+
+/* Controles (gap aumentado) */
+.access-controls {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;        /* separación extra */
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Cada botón estilo Teleton en circulito + etiqueta */
+.access-control {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  outline: none;
+  transform: none;
+  box-shadow: none;
+  transition: none;
+}
+.access-control .icon-circle {
+  background: #fff;
+  color: var(--color-teleton-red);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.access-control .label-outside {
+  font-size: 0.85rem;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Evitar “shrink” al hacer clic */
+.access-control:active {
+  transform: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Widget abierto: crece y muestra controles */
+.accessibility-widget.open {
+  height: 150px;
+}
+.accessibility-widget.open .access-controls {
+  opacity: 1;
+}
+
+/* Guía de Lectura */
+.guide-line {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 2em;
+  background: rgba(255, 255, 0, 0.2);
+  pointer-events: none;
+  z-index: 10001;
+}
 
 /* ========== FOOTER ========== */
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  padding: 0.5rem;  /* AJUSTADO para que no sea tan alto */
+  height: 36px;        /* fuerza altura exacta */
+  padding: 0;          /* elimina padding vertical */
+  line-height: 36px;   /* centra vertical el texto */
   background-color: #f3ede7;
   text-align: center;
   font-size: 0.85rem;
   color: #333;
   box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+  z-index: 9999;
 }
+
 
 
 /* ========== RESPONSIVE ========== */

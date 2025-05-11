@@ -17,12 +17,11 @@
     </div>
   </header>
 
+  <!-- templates/login.html -->
   <div class="background">
     <div class="login-card">
-      <div class="logo">
-        <img src="{% static '/img/logo-teleton-.png' %}" alt="Teletón" class="logo-img">
-        <h2>Iniciar sesión</h2>
-      </div>
+      <!-- Logo eliminado -->
+      <h2>Iniciar sesión</h2>
       <form method="GET" action="{% url 'home' %}">
         {% csrf_token %}
         <input type="email" inputmode="email" name="correo" placeholder="ejemplo@teleton.cl" required>
@@ -37,6 +36,63 @@
       </form>
     </div>
   </div>
+  <div id="accessibility-bar" class="accessibility-bar">
+    <button id="accessibility-open" class="access-btn" aria-label="Modo accesible">
+      <span class="icon">♿</span>
+      <span class="label">Modo Accesible</span>
+    </button>
+  </div>
+
+  <div id="accessibility-panel" class="accessibility-panel" aria-hidden="true">
+    <button id="accessibility-close" class="access-close" aria-label="Cerrar modo accesible">✕ Cerrar</button>
+    <div class="access-controls">
+      <button id="zoom-in" class="access-control">A+<br><small>Agrandar</small></button>
+      <button id="zoom-out" class="access-control">A−<br><small>Disminuir</small></button>
+      <button id="guide" class="access-control">👁️<br><small>Guía<br>de Lectura</small></button>
+      <button id="contrast" class="access-control">⚙️<br><small>Contraste</small></button>
+      <button id="highlight" class="access-control">✏️<br><small>Resaltar<br>Objetos</small></button>
+      <button id="cursor" class="access-control">🖱️<br><small>Cursor</small></button>
+      <button id="tts" class="access-control">🔊<br><small>Audio<br>Lectura</small></button>
+    </div>
+  </div>
+  <script>
+    const barOpen     = document.getElementById('accessibility-open');
+    const panel       = document.getElementById('accessibility-panel');
+    const barClose    = document.getElementById('accessibility-close');
+    const root        = document.documentElement;
+
+    barOpen.addEventListener('click', () => {
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden','false');
+    });
+    barClose.addEventListener('click', () => {
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden','true');
+    });
+
+    document.getElementById('zoom-in').onclick = () => {
+      root.style.fontSize = (parseFloat(getComputedStyle(root).fontSize) + 2) + 'px';
+    };
+    document.getElementById('zoom-out').onclick = () => {
+      root.style.fontSize = (parseFloat(getComputedStyle(root).fontSize) - 2) + 'px';
+    };
+    document.getElementById('contrast').onclick = () => {
+      document.body.classList.toggle('contrast');
+    };
+    document.getElementById('highlight').onclick = () => {
+      document.querySelectorAll('a, button, input, img').forEach(el => {
+        el.classList.toggle('highlightable');
+      });
+    };
+    document.getElementById('cursor').onclick = () => {
+      document.body.classList.toggle('large-cursor');
+    };
+    document.getElementById('tts').onclick = () => {
+      const text = document.body.innerText;
+      new SpeechSynthesisUtterance(text) && speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+    };
+
+  </script>
   <footer class="footer">
   © 2025 Teletón – Proyecto GrafomotorIA
   </footer>

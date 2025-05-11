@@ -19,28 +19,194 @@
       <img src="{% static 'img/user-icon.png' %}" alt="Usuario">
     </div>
   </header>
-
-  <!-- AQUI SE AGREGA EL CONTENEDOR BACKGROUND -->
+  
   <div class="background">
-    <main class="dashboard">
-      <div class="card">
-        <img src="{% static 'img/icon-pacientes.png' %}" alt="Pacientes">
-        <span>Gestión de pacientes</span>
+    <section class="data-panel">
+      <div class="data-controls">
+        <input type="search" placeholder="Buscar…" class="dp-search">
+        <select class="dp-filter">
+          <option value="">Edad</option>
+          <option>6</option><option>11</option><option>16</option><option>8</option><option>18</option>
+        </select>
+        <select class="dp-filter">
+          <option value="">Estado</option>
+          <option>En Evaluación</option><option>En Tratamiento</option><option>Alta Médica</option><option>En Seguimiento</option>
+        </select>
+        <select class="dp-filter">
+          <option value="">Patología</option>
+          <option>TEA</option><option>TDAH</option><option>Dispraxia</option><option>Parálisis cerebral</option><option>Traumatismos</option>
+        </select>
+        <button class="dp-add">+ Agregar</button>
+        <div class="dp-user"><img src="{% static 'img/user-icon.png' %}" alt="Usuario"></div>
       </div>
-      <div class="card">
-        <img src="{% static 'img/icon-pacientes.png' %}" alt="Pacientes">
-        <span>Gestión de usuarios</span>
+      <table class="dp-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>RUT</th>
+            <th>Patología</th>
+            <th>Última Cita</th>
+            <th>Gestionar</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Juana Díaz</td><td>6</td><td>26.234.536-2</td><td>TEA</td><td>28-03-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-evaluacion">En Evaluación</span></td>
+          </tr>
+          <tr>
+            <td>Esteban Peral</td><td>11</td><td>24.345.342-3</td><td>TDAH</td><td>29-03-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-tratamiento">En Tratamiento</span></td>
+          </tr>
+          <tr>
+            <td>Fernanda Alis</td><td>16</td><td>22.897.345-0</td><td>Dispraxia</td><td>12-02-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status alta-medica">Alta Médica</span></td>
+          </tr>
+          <tr>
+            <td>Aitana Aravena</td><td>8</td><td>26.987.435-k</td><td>Parálisis cerebral</td><td>09-02-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-seguimiento">En Seguimiento</span></td>
+          </tr>
+          <tr>
+            <td>Sofía Valencia</td><td>18</td><td>22.343.001-0</td><td>Traumatismos encéfalo</td><td>23-01-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-seguimiento">En Seguimiento</span></td>
+          </tr>
+          <tr>
+            <td>Sofía Vergara</td><td>20</td><td>21.323.021-0</td><td>Traumatismos encéfalo</td><td>13-01-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-seguimiento">En Seguimiento</span></td>
+          </tr>
+          <tr>
+            <td>Benito Villamarin</td><td>23</td><td>19.433.342-0</td><td>Traumatismos encéfalo</td><td>24-02-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-evaluacion">En Evaluación</span></td>
+          </tr>
+          <tr>
+            <td>Juan Benitez</td><td>25</td><td>18.343.001-5</td><td>Traumatismos encéfalo</td><td>04-12-2024</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-tratamiento">En Tratamiento</span></td>
+          </tr>
+          <tr>
+            <td>Páz Aravena</td><td>18</td><td>22.233.001-3</td><td>Traumatismos encéfalo</td><td>21-03-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-evaluacion">En Evaluación</span></td>
+          </tr>
+          <tr>
+            <td>miguel Abarca</td><td>15</td><td>24.345.454-3</td><td>Traumatismos encéfalo</td><td>12-02-2025</td>
+            <td>✏️ 📄 ❌</td>
+            <td><span class="status en-evaluacion">En Evaluación</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="dp-pagination">
+        <button>‹</button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <span>…</span>
+        <button>40</button>
+        <button>›</button>
       </div>
-      <div class="card">
-        <img src="{% static 'img/icon-gestion.png' %}"  alt="Calendario">
-        <span>Gestión de sesiones</span>
+    </section>
+  </div>
+
+  <!-- Widget de accesibilidad -->
+  <div id="accessibility-widget" class="accessibility-widget">
+    <div class="access-header" id="access-toggle" role="button" tabindex="0">
+      <div class="access-header" id="access-toggle" role="button" tabindex="0">
+        <img src="{% static 'img/logo-accesible.png' %}" alt="Accesibilidad" class="access-icon">
+        <span class="label">Modo Accesible</span>
       </div>
-    </main>
+
+    </div>
+    <div class="access-controls">
+      <button id="zoom-in" class="access-control">
+        <div class="icon-circle">A+</div>
+        <div class="label-outside">Agrandar</div>
+      </button>
+      <button id="zoom-out" class="access-control">
+        <div class="icon-circle">A−</div>
+        <div class="label-outside">Disminuir</div>
+      </button>
+      <button id="guide" class="access-control">
+        <div class="icon-circle">👁️</div>
+        <div class="label-outside">Guía de Lectura</div>
+      </button>
+      <button id="tts" class="access-control">
+        <div class="icon-circle">🔊</div>
+        <div class="label-outside">Audio Lectura</div>
+      </button>
+    </div>
   </div>
 
   <footer class="footer">
     © 2025 Teletón – Proyecto GrafomotorIA
   </footer>
-</body>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const widget = document.getElementById('accessibility-widget');
+      const toggle = document.getElementById('access-toggle');
+      const root   = document.documentElement;
+      let guideActive = false, guideLine, moveGuide, utterance;
+
+      // Toggle apertura/cierre
+      toggle.addEventListener('click', () => widget.classList.toggle('open'));
+
+      // Zoom In / Zoom Out
+      document.getElementById('zoom-in').onclick = () => {
+        root.style.fontSize = (parseFloat(getComputedStyle(root).fontSize) + 2) + 'px';
+      };
+      document.getElementById('zoom-out').onclick = () => {
+        root.style.fontSize = (parseFloat(getComputedStyle(root).fontSize) - 2) + 'px';
+      };
+
+      // Guía de Lectura
+      document.getElementById('guide').addEventListener('click', () => {
+        guideActive = !guideActive;
+        if (guideActive) {
+          guideLine = document.createElement('div');
+          guideLine.className = 'guide-line';
+          document.body.appendChild(guideLine);
+          moveGuide = e => guideLine.style.top = e.clientY + 'px';
+          document.addEventListener('mousemove', moveGuide);
+        } else {
+          document.removeEventListener('mousemove', moveGuide);
+          if (guideLine) guideLine.remove();
+        }
+      });
+
+      // Audio Lectura (TTS)
+      const ttsBtn = document.getElementById('tts');
+      ttsBtn.addEventListener('click', () => {
+        const iconCircle = ttsBtn.querySelector('.icon-circle');
+        const label      = ttsBtn.querySelector('.label-outside');
+
+        if (speechSynthesis.speaking) {
+          speechSynthesis.cancel();
+          iconCircle.textContent = '🔊';
+          label.textContent      = 'Audio Lectura';
+        } else {
+          const texto = document.body.innerText;
+          utterance = new SpeechSynthesisUtterance(texto);
+          utterance.onstart = () => {
+            iconCircle.textContent = '⏹️';
+            label.textContent      = 'Detener Lectura';
+          };
+          utterance.onend = () => {
+            iconCircle.textContent = '🔊';
+            label.textContent      = 'Audio Lectura';
+          };
+          speechSynthesis.speak(utterance);
+        }
+      });
+    });
+  </script>
+</body>
 </html>
