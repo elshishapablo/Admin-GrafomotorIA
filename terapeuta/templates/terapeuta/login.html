@@ -22,39 +22,102 @@
     <div class="login-card">
       <!-- Logo eliminado -->
       <h2>Iniciar sesión</h2>
-      <form method="GET" action="{% url 'home' %}">
+      {% if error %}
+        <div class="error-msg">{{ error }}</div>
+      {% endif %}
+      <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        <input type="email" inputmode="email" name="correo" placeholder="ejemplo@teleton.cl" required>
-        <input type="password" name="contrasena" placeholder="Contraseña" required>
-
-        {% if error %}
-          <div class="error-msg">{{ error }}</div>
-        {% endif %}
-
+        <!-- inputs… -->
+      </form>
+      <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="email" name="correo"    placeholder="ejemplo@teleton.cl" required>
+        <input type="password" name="contrasena" placeholder="Contraseña"       required>
         <button type="submit">Acceder</button>
         <a href="#" class="forgot">Olvidé mi contraseña</a>
       </form>
-    </div>
-  </div>
-  <div id="accessibility-bar" class="accessibility-bar">
-    <button id="accessibility-open" class="access-btn" aria-label="Modo accesible">
-      <span class="icon">♿</span>
-      <span class="label">Modo Accesible</span>
-    </button>
-  </div>
 
-  <div id="accessibility-panel" class="accessibility-panel" aria-hidden="true">
-    <button id="accessibility-close" class="access-close" aria-label="Cerrar modo accesible">✕ Cerrar</button>
-    <div class="access-controls">
-      <button id="zoom-in" class="access-control">A+<br><small>Agrandar</small></button>
-      <button id="zoom-out" class="access-control">A−<br><small>Disminuir</small></button>
-      <button id="guide" class="access-control">👁️<br><small>Guía<br>de Lectura</small></button>
-      <button id="contrast" class="access-control">⚙️<br><small>Contraste</small></button>
-      <button id="highlight" class="access-control">✏️<br><small>Resaltar<br>Objetos</small></button>
-      <button id="cursor" class="access-control">🖱️<br><small>Cursor</small></button>
-      <button id="tts" class="access-control">🔊<br><small>Audio<br>Lectura</small></button>
     </div>
   </div>
+      <!-- Widget de accesibilidad -->
+    <div id="accessibility-widget" class="accessibility-widget">
+      <div class="access-header" id="access-toggle" role="button" tabindex="0">
+        <img src="{% static 'img/logo-accesible.png' %}" alt="Accesibilidad" class="access-icon">
+        <span class="label">Modo Accesible</span>
+      </div>
+      <div class="access-controls">
+        <button id="zoom-in" class="access-control">
+          <div class="icon-circle">A+</div>
+          <div class="label-outside">Agrandar</div>
+        </button>
+        <button id="zoom-out" class="access-control">
+          <div class="icon-circle">A−</div>
+          <div class="label-outside">Disminuir</div>
+        </button>
+        <button id="guide" class="access-control">
+          <div class="icon-circle">👁️</div>
+          <div class="label-outside">Guía de Lectura</div>
+        </button>
+        <button id="tts" class="access-control">
+          <div class="icon-circle">🔊</div>
+          <div class="label-outside">Audio Lectura</div>
+        </button>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const widget = document.getElementById('accessibility-widget');
+        const toggle = document.getElementById('access-toggle');
+        const root   = document.documentElement;
+        let guideActive = false, guideLine, moveGuide, utterance;
+
+        toggle.addEventListener('click', () => widget.classList.toggle('open'));
+
+        document.getElementById('zoom-in').onclick = () => {
+          root.style.fontSize = (parseFloat(getComputedStyle(root).fontSize) + 2) + 'px';
+        };
+        document.getElementById('zoom-out').onclick = () => {
+          root.style.fontSize = (parseFloat(getComputedStyle(root).fontSize) - 2) + 'px';
+        };
+        document.getElementById('guide').onclick = () => {
+          guideActive = !guideActive;
+          if (guideActive) {
+            guideLine = document.createElement('div');
+            guideLine.className = 'guide-line';
+            document.body.appendChild(guideLine);
+            moveGuide = e => guideLine.style.top = e.clientY + 'px';
+            document.addEventListener('mousemove', moveGuide);
+          } else {
+            document.removeEventListener('mousemove', moveGuide);
+            if (guideLine) guideLine.remove();
+          }
+        };
+        const ttsBtn = document.getElementById('tts');
+        ttsBtn.addEventListener('click', () => {
+          const iconCircle = ttsBtn.querySelector('.icon-circle');
+          const label      = ttsBtn.querySelector('.label-outside');
+          if (speechSynthesis.speaking) {
+            speechSynthesis.cancel();
+            iconCircle.textContent = '🔊';
+            label.textContent      = 'Audio Lectura';
+          } else {
+            const texto = document.body.innerText;
+            utterance     = new SpeechSynthesisUtterance(texto);
+            utterance.onstart = () => {
+              iconCircle.textContent = '⏹️';
+              label.textContent      = 'Detener Lectura';
+            };
+            utterance.onend = () => {
+              iconCircle.textContent = '🔊';
+              label.textContent      = 'Audio Lectura';
+            };
+            speechSynthesis.speak(utterance);
+          }
+        });
+      });
+      </script>
+
+
   
   <footer class="footer">
   © 2025 Teletón – Proyecto GrafomotorIA

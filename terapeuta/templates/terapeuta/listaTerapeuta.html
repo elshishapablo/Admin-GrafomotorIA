@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>GrafomotorIA | Inicio </title>
   <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
-  <link rel="stylesheet" href="{% static 'style-home.css' %}">
+  <link rel="stylesheet" href="{% static 'style-listaTerapeuta.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,9 +15,10 @@
       <span class="navbar-title">GrafomotorIA</span>
     </div>
     <div class="user-info">
-      Hola, usuario
+      Hola, {{ request.user.username }}   {# o {{ request.user.email }} #}
       <img src="{% static 'img/user-icon.png' %}" alt="Usuario">
     </div>
+
   </header>
   
   <div class="background">
@@ -43,66 +44,28 @@
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Edad</th>
-            <th>RUT</th>
-            <th>Patología</th>
-            <th>Última Cita</th>
-            <th>Gestionar</th>
-            <th>Estado</th>
+            <th>Email</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
           </tr>
         </thead>
+
         <tbody>
+          {% for u in terapeutas %}
           <tr>
-            <td>Juana Díaz</td><td>6</td><td>26.234.536-2</td><td>TEA</td><td>28-03-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-evaluacion">En Evaluación</span></td>
+            <td>{{ u.nombre }} {{ u.apellido }}</td>
+            <td>{{ u.correo }}</td>
+            <td>{{ u.get_tipo_usuario_display }}</td>
+            <td><!-- aquí tus iconos de gestionar si los tienes --></td>
           </tr>
+          {% empty %}
           <tr>
-            <td>Esteban Peral</td><td>11</td><td>24.345.342-3</td><td>TDAH</td><td>29-03-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-tratamiento">En Tratamiento</span></td>
+            <td colspan="4">No hay terapeutas registrados.</td>
           </tr>
-          <tr>
-            <td>Fernanda Alis</td><td>16</td><td>22.897.345-0</td><td>Dispraxia</td><td>12-02-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status alta-medica">Alta Médica</span></td>
-          </tr>
-          <tr>
-            <td>Aitana Aravena</td><td>8</td><td>26.987.435-k</td><td>Parálisis cerebral</td><td>09-02-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-seguimiento">En Seguimiento</span></td>
-          </tr>
-          <tr>
-            <td>Sofía Valencia</td><td>18</td><td>22.343.001-0</td><td>Traumatismos encéfalo</td><td>23-01-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-seguimiento">En Seguimiento</span></td>
-          </tr>
-          <tr>
-            <td>Sofía Vergara</td><td>20</td><td>21.323.021-0</td><td>Traumatismos encéfalo</td><td>13-01-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-seguimiento">En Seguimiento</span></td>
-          </tr>
-          <tr>
-            <td>Benito Villamarin</td><td>23</td><td>19.433.342-0</td><td>Traumatismos encéfalo</td><td>24-02-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-evaluacion">En Evaluación</span></td>
-          </tr>
-          <tr>
-            <td>Juan Benitez</td><td>25</td><td>18.343.001-5</td><td>Traumatismos encéfalo</td><td>04-12-2024</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-tratamiento">En Tratamiento</span></td>
-          </tr>
-          <tr>
-            <td>Páz Aravena</td><td>18</td><td>22.233.001-3</td><td>Traumatismos encéfalo</td><td>21-03-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-evaluacion">En Evaluación</span></td>
-          </tr>
-          <tr>
-            <td>miguel Abarca</td><td>15</td><td>24.345.454-3</td><td>Traumatismos encéfalo</td><td>12-02-2025</td>
-            <td>✏️ 📄 ❌</td>
-            <td><span class="status en-evaluacion">En Evaluación</span></td>
-          </tr>
+          {% endfor %}
         </tbody>
+
+
       </table>
       <div class="dp-pagination">
         <button>‹</button>

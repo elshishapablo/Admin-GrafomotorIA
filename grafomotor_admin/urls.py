@@ -4,7 +4,6 @@ from terapeuta import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.login_view, name='login'),
-    path('home/', views.home_view, name='home'),
+    path('',       views.login_view, name='login'),
+    path('listaTerapeuta/',  views.listaTerapeuta_view,  name='listaTerapeuta'),
 ]
-
